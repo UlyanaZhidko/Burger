@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const prevButton = document.querySelector('#prev');
     const modalDialog = document.querySelector('.modal-dialog');
     const sendButton = document.querySelector('#send');
+    const modalTitle = document.querySelector('.modal-title');
 
     let clientWidth = document.documentElement.clientWidth;
 
@@ -157,8 +158,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const playTest = () => {
        
         const finalAnswers = []; //ответы пользователя
+        const obj = {};
 
         let numberQuestion = 0;
+        modalTitle.textContent = "Ответь на вопрос:";
         //создание ответов
         const renderAnswers = (index) => {
             questions[index].answers.forEach((answer) => {
@@ -191,6 +194,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 prevButton.classList.add('d-none');
             }
             if(numberQuestion === questions.length) {
+                questionTitle.textContent = '';
+                modalTitle.textContent = '';
                 nextButton.classList.add('d-none');
                 prevButton.classList.add('d-none');
                 sendButton.classList.remove('d-none');
@@ -200,21 +205,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 <input type="phone" class="form-control" id="numberPhone">
                 </div>
                 `;
-            }
+
+                // запрет на ввод букв для телефона
+                const numberPhone = document.getElementById('numberPhone');
+                numberPhone.addEventListener('input', (event) => {
+                    event.target.value = event.target.value.replace(/[^0-9+-]/, '');
+                });
+            };
             // убираем модальное окно после теста
             if(numberQuestion === questions.length + 1) {
                 formAnswers.textContent = 'Спасибо за пройденный тест!'
+                sendButton.classList.add('d-none');
+                for(let key in obj) {
+                    let newObj = [];
+                    newObj = obj[key];
+                    finalAnswers.push(newObj);
+                }
+
                 setTimeout(() => {
                     modalBlock.classList.remove('d-block');
                 }, 2000);
-            }
+            };
 
-        }
+        };
 
         renderQuestions(numberQuestion);
 
         const checkAnswer = () => { // сохранение ответов
-            const obj = {};
+           
             const inputs = [...formAnswers.elements].filter((input) => input.checked || input.id === 'numberPhone')
             inputs.forEach((input, index) => {
                if(numberQuestion >= 0 && numberQuestion <= questions.length - 1) {
@@ -224,27 +242,24 @@ document.addEventListener('DOMContentLoaded', function () {
                if(numberQuestion === questions.length) {
                 obj[`Номер телефона`] = input.value;
                }
-            })
-
-            finalAnswers.push(obj)
-        }
+            });
+        };
 
         // кнопки вперед назад И отправить
         nextButton.onclick = () => {
             checkAnswer();
             numberQuestion++;
             renderQuestions(numberQuestion);
-        }
+        };
         prevButton.onclick = () => {
             numberQuestion--;
             renderQuestions(numberQuestion);
-        }
-
+        };
         sendButton.onclick = () => {
             checkAnswer();
             numberQuestion++;
             renderQuestions(numberQuestion);
-        }
+        };
     };
 
 
