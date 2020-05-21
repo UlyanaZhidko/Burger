@@ -44,15 +44,14 @@ label span {
 }
 
 .logo-text, .contacts, .main-title, .arrow {
-    color: #3CB371;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+    color: rgb(38, 100, 66);
+
 }
 
 .content {
     width: 300px;
     height: 300px;
-    background: url('../image/burger-4026165_960_720.webp') center no-repeat;
+    background: url('../image/body.png') center no-repeat;
     background-size: 115%;
 }
 
@@ -62,9 +61,8 @@ label span {
 
 .modal-content {
     background: #E0FFFF;
-    /* color: #3CB371; */
-    /* -webkit-text-stroke-width: 1px; */
-    /* -webkit-text-stroke-color: black;  */
+
+
 }
 
 .btn-outline-danger {
@@ -76,16 +74,15 @@ label span {
 .btn-outline-danger span {
     font-size: 2rem !important;
     color: #3CB371;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black; 
+
 }
 
 .btn-outline-danger:hover,
 .btn-outline-danger:active,
 .btn-outline-danger:focus,
 .btn-outline-danger:visited{
-    background-color: #3CB371 !important;
-    color: black !important;
+    background-color: rgb(38, 100, 66) !important;
+ 
 }
 
 .btn-outline-danger:hover span,
@@ -94,7 +91,7 @@ label span {
 .btn-outline-danger:visited span{
     color: #E0FFFF !important;
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black; 
+ 
 }
 
 .burger {
